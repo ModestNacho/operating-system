@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* May need to be removed if its in the way of scrolling within a window or mobile devices */
+body {
+    overflow: hidden; 
+}
+
+.shadow-neu {
+    box-shadow: none; /* Removed the glow effects */
+  }
+  
+  .shadow-inner-neu {
+    box-shadow: none; /* Removed the inner shadow effects */
+  }
+  
+  .neu-button {
+    background: #b5915f; /* A slightly different shade of yellow for the buttons */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    box-shadow: none; /* Removed shadow for buttons */
+    transition: all 0.3s ease-in-out;
+    color: white;
+  }
+  
+  .neu-button:hover {
+    background: #7a5c34; /* Darker shade for hover state */
+  }
+  .custom-shadow {
+    box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.43);
+  }
+  
