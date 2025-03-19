@@ -22,7 +22,7 @@ function Taskbar() {
         right: isMaximized ? '0px' : '20px',
         backgroundColor: isMaximized ? '#000000' : 'rgba(0, 0, 0, 0.8)',
       }}
-      className="fixed mx-auto max-w-[1892px] border-2 border-black/20 shadow-lg z-50 flex items-center justify-between p-4"
+      className="fixed mx-auto max-w border-2 border-black/20 shadow-lg z-50 flex items-center justify-between p-4"
     >
       {/* Left-aligned icon */}
       <div className="flex items-center">

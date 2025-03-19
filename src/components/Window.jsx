@@ -21,7 +21,7 @@ function Window({ windowId, children }) {
       const height = 600; // Window height
 
       const centerX = (window.innerWidth - width) / 2;
-      const centerY = (window.innerHeight - height) / 2 - 550;
+      const centerY = (window.innerHeight - height) / 2 - 300;
 
       setPosition({ x: centerX, y: centerY });
     }

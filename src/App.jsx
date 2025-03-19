@@ -35,16 +35,16 @@ function App() {
           name="Internet"
           onDoubleClick={() => handleOpenWindow('Internet')}
         />
-        <DesktopIcon
+        {/* <DesktopIcon
           icon={PCIcon}
           name="PC"
           onDoubleClick={() => handleOpenWindow('PC')}
-        />
-        <DesktopIcon
+        /> */}
+        {/* <DesktopIcon
           icon={FolderIcon}
           name="Folder"
           onDoubleClick={() => handleOpenWindow('Folder')}
-        />
+        /> */}
         <DesktopIcon
           icon={FileIcon}
           name="Resume"
