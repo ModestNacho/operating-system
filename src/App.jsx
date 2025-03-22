@@ -32,7 +32,7 @@ function App() {
       <div className="desktop pt-[70px] h-full flex flex-col items-start p-4 space-y-6 relative z-10">
         <DesktopIcon
           icon={InternetIcon}
-          name="Internet"
+          name="Interwebs"
           onDoubleClick={() => handleOpenWindow('Internet')}
         />
         {/* <DesktopIcon
