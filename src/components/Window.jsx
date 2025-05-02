@@ -9,6 +9,9 @@ import MaximizeIcon from '/Users/shweb/Documents/Portfolio/OS/Operating-System/s
 import MinimizeIcon from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/Minimize.svg'; // Minimize icon
 import CloseIcon from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/Close.svg'; // Close icon
 
+const WINDOW_WIDTH = 1260;
+const WINDOW_HEIGHT = 720;
+
 function Window({ windowId, children }) {
   const { closeWindow, minimizeWindow, maximizeWindow, windows } = useStore();
   const windowState = windows.find(win => win.id === windowId);
@@ -17,15 +20,14 @@ function Window({ windowId, children }) {
 
   useEffect(() => {
     if (windowState && !windowState.isMaximized) {
-      const width = 800; // Window width
-      const height = 600; // Window height
-
-      const centerX = (window.innerWidth - width) / 2;
-      const centerY = (window.innerHeight - height) / 2 - 300;
+      const index = windows.findIndex(win => win.id === windowId);
+      const offset = index * 30; // 30px stagger offset per window
+      const centerX = (window.innerWidth - WINDOW_WIDTH) / 2 + offset;
+      const centerY = (window.innerHeight - WINDOW_HEIGHT) / 2 - 300 + offset;
 
       setPosition({ x: centerX, y: centerY });
     }
-  }, [windowState]);
+  }, [windowState, windowId, windows]);
 
   if (!windowState) return null;
 
@@ -37,8 +39,12 @@ function Window({ windowId, children }) {
       onStop={(e, data) => setPosition({ x: data.x, y: data.y })}
     >
       <motion.div
+        style={{
+          width: windowState.isMaximized ? '100%' : `${WINDOW_WIDTH}px`,
+          height: windowState.isMaximized ? 'calc(100vh - 40px)' : `${WINDOW_HEIGHT}px`,
+        }}
         className={`window bg-[#917433] border border-[#7a5c34] ${
-          windowState.isMaximized ? 'fixed top-[40px] left-0 w-full h-[calc(100vh-40px)] rounded-none' : 'w-[800px] h-[600px] rounded-[20px] custom-shadow'
+          windowState.isMaximized ? 'fixed top-[40px] left-0 rounded-none' : 'rounded-[20px] custom-shadow'
         }`}
       >
         {/* Window Header */}

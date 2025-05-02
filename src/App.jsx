@@ -1,9 +1,10 @@
-// File: src/App.jsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import DesktopIcon from './components/DesktopIcon';
 import Window from './components/Window';
 import Taskbar from './components/Taskbar';
 import useStore from './stores/windowsStore';
+import StickyNote from './components/StickyNote'; 
+import useKeyboardSounds from './components/UseKeyboardSounds';
 
 import PCIcon from '/src/assets/PC Icon.svg';
 import FolderIcon from '/src/assets/Folder Icon.svg';
@@ -19,6 +20,12 @@ import PrinterIcon from './components/PrinterIcon';
 
 function App() {
   const openWindow = useStore((state) => state.openWindow);
+
+  useKeyboardSounds();
+
+  useEffect(() => {
+    openWindow({ id: 'Internet', name: 'Interwebs' });
+  }, []);
 
   const handleOpenWindow = (iconName) => {
     openWindow({ id: iconName, name: iconName });
@@ -55,6 +62,10 @@ function App() {
       {/* Printer icon */}
       <div className="absolute top-20 right-10 z-10">
         <PrinterIcon />
+      </div>
+
+      <div className="absolute top-20 right-72 z-20">
+        <StickyNote />
       </div>
 
       {/* Windows */}
