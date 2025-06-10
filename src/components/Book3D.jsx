@@ -1,30 +1,59 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+// Import all icons
+import BlenderLogo from '../assets/BlenderLogo.svg';
+import FramerLogo from '../assets/Framer.svg';
+import ReactLogo from '../assets/React.svg';
+import TailwindLogo from '../assets/tailwind.svg';
+import ThreejsLogo from '../assets/threejs.svg';
+import ZustandLogo from '../assets/Zustand.svg';
+
+const books = [
+  {
+    title: 'Three.js',
+    author: '3D Graphics Rendering',
+    icon: ThreejsLogo,
+    coverColor: '#B1D044'  // Original gold/yellow color
+  },
+  {
+    title: 'React',
+    author: 'UI Framework',
+    icon: ReactLogo,
+    coverColor: '#337CA0'  // Original blue color
+  },
+  {
+    title: 'Tailwind CSS',
+    author: 'Utility-First CSS',
+    icon: TailwindLogo,
+    coverColor: '#998080'  // Original mauve color
+  },
+  {
+    title: 'Framer Motion',
+    author: 'Animation Library',
+    icon: FramerLogo,
+    coverColor: '#FF8360'  // Original coral color
+  },
+  {
+    title: 'Blender',
+    author: '3D Modeling Software',
+    icon: BlenderLogo,
+    coverColor: '#9153F4'  // Original purple color
+  },
+  {
+    title: 'Zustand',
+    author: 'State Management',
+    icon: ZustandLogo,
+    coverColor: '#F3BD29'  // Original yellow/gold color
+  }
+];
+
 const Book3D = ({ 
   title = "Sample Book", 
-  author = "Author", 
+  author = "Description",
   coverColor = "#2075fc",
-  rectangleColor = "rgba(255, 255, 255, 0.2)",
-  rectangleCount = 2,
-  rectangleWidth = "4px",
-  rectangleGap = "8px",
-  rectanglePosition = "left",
-  rectangleOffset = "0px",
-  rectangleHeight = "100%", // Control height of rectangles
-  rectangleTopOffset = "0%", // Control vertical position from top
-  rectangleDepth = "2px" // Control how much the rectangles stick out
+  icon = null
 }) => {
-  const rectangles = Array.from({ length: rectangleCount });
-
-  // Calculate position styles based on rectanglePosition
-  const getPositionStyle = () => {
-    switch(rectanglePosition) {
-      case 'left':
-        return { left: rectangleOffset };
-    }
-  };
-
   return (
     <motion.div
       className="relative w-[240px] h-[300px]"
@@ -52,44 +81,37 @@ const Book3D = ({
             transform: 'translateZ(35px)',
           }}
         >
-          {/* Vertical Rectangles */}
-          <div 
-            className="absolute flex gap-[12px]" 
-            style={{ 
-              gap: rectangleGap,
-              top: rectangleTopOffset,
-              height: rectangleHeight,
-              ...getPositionStyle()
-            }}
-          >
-            {rectangles.map((_, index) => (
-              <div
-                key={index}
-                style={{
-                  width: rectangleWidth,
-                  height: '100%',
-                  backgroundColor: rectangleColor,
-                  transform: `translateZ(${rectangleDepth})`,
-                }}
-                className="rounded-sm"
-              />
-            ))}
-          </div>
-
+          {/* Decorative vertical lines */}
+          <div className="absolute left-0 top-0 h-full w-[10px] bg-black opacity-10" />
+          <div className="absolute left-[6px] top-0 h-full w-[3px] bg-white opacity-20" />
+          
           {/* Content positioning inside front cover */}
-          <div className="p-6 text-white">
-            <h3 className="text-xl font-bold">{title}</h3>
-            <p className="text-sm mt-2 opacity-80">{author}</p>
+          <div className="p-6 text-white h-full relative overflow-hidden">
+            <div>
+              <h3 className="text-xl font-bold">{title}</h3>
+              <p className="text-sm mt-1 opacity-80">{author}</p>
+            </div>
+            {/* Icon display */}
+            <img 
+              src={icon} 
+              alt={`${title} icon`} 
+              className="w-40 h-40 object-contain absolute bottom-0 right-0 translate-x-10 translate-y-10"
+              style={{ 
+                filter: 'brightness(2) saturate(0%)',
+                opacity: 0.4,
+                mixBlendMode: 'soft-light'
+              }}
+            />
           </div>
         </motion.div>
 
         {/* Paper Edge - now centered using top positioning */}
         <motion.div
-          className="absolute right-0 w-[35px] bg-gray-100" // Removed h-full to control height separately
+          className="absolute right-0 w-[35px] bg-gray-100"
           style={{
-            height: '97%', // Adjust this value to control paper edge height
-            top: '50%', // Centers vertically
-            transform: 'translateX(-3px) rotateY(90deg) translateY(-50%)', // Added translateY for centering
+            height: '97%',
+            top: '50%',
+            transform: 'translateX(-3px) rotateY(90deg) translateY(-50%)',
             transformOrigin: 'right',
             transformStyle: 'preserve-3d',
           }}
@@ -103,7 +125,7 @@ const Book3D = ({
             filter: 'brightness(0.8)',
             transformStyle: 'preserve-3d',
             backfaceVisibility: 'hidden',
-            transform: 'translateZ(-1px)', // Adjust this to control book thickness
+            transform: 'translateZ(-1px)',
           }}
         />
       </motion.div>
@@ -111,32 +133,21 @@ const Book3D = ({
   );
 };
 
+// Bookshelf component that uses Book3D
+export const Bookshelf = () => {
+  return (
+    <div className="flex flex-wrap gap-8 justify-center items-center p-8">
+      {books.map((book, index) => (
+        <Book3D
+          key={index}
+          title={book.title}
+          author={book.author}
+          icon={book.icon}
+          coverColor={book.coverColor}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default Book3D;
-
-/* Key Adjustments Guide:
-
-Book Size:
-- Change w-[200px] h-[300px] in main container className
-- These control the overall dimensions of the book
-
-3D Effect Intensity:
-- Adjust perspective: '1000px' - larger = subtler effect
-- Change rotation range in whileHover={{ rotateY: -30 }}
-
-Book Thickness:
-- Adjust translateZ values on front/back covers
-- Modify paper edge width (w-[2px])
-
-Hover Animation:
-- Modify the duration and easing in transition={{ duration: 0.5, ease: "easeOut" }}
-
-Colors:
-- Front cover: bg-blue-500
-- Back cover: bg-blue-600
-- Paper edge: bg-gray-100
-
-Content Positioning:
-- Modify padding and margin in the content div
-- Adjust text sizes and spacing with Tailwind classes
-
-*/

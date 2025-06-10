@@ -68,7 +68,7 @@ const ProfileContent = ({ isDarkMode }) => {
               About Me
             </h1>
             <p className={`text-lg mt-4 max-w-xl ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-              Frontend Developer with a passion for creating intuitive user experiences
+              Frontend Developer
             </p>
             
             <div className="flex flex-col space-y-4 mt-8">
@@ -77,28 +77,10 @@ const ProfileContent = ({ isDarkMode }) => {
                   ? 'bg-[#1f1f1f] hover:bg-[#2a2a2a]' 
                   : 'bg-[#eddebf] hover:bg-[#ede6eb]'
                 } transition-colors cursor-pointer`}>
-                <h3 className={`text-xl font-medium ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
-                }`}>Technical Skills</h3>
-                <p className={`text-sm mt-1 ${
+                <p className={`text-m mt-1 ${
                   isDarkMode ? 'text-gray-300' : 'text-gray-600'
                 }`}>
-                  React, Three.js, TailwindCSS, WebGL, Figma, UI/UX Design
-                </p>
-              </div>
-              
-              <div className={`rounded-lg p-6 ${
-                isDarkMode 
-                  ? 'bg-[#1f1f1f] hover:bg-[#2a2a2a]' 
-                  : 'bg-[#eddebf] hover:bg-[#ede6eb]'
-                } transition-colors cursor-pointer`}>
-                <h3 className={`text-xl font-medium ${
-                  isDarkMode ? 'text-white' : 'text-gray-900'
-                }`}>Experience</h3>
-                <p className={`text-sm mt-1 ${
-                  isDarkMode ? 'text-gray-300' : 'text-gray-600'
-                }`}>
-                  Frontend Development, 3D Graphics, Interactive Web Applications
+                  I see web design as a space for creativity and emotional connection — not just functionality. I explore new ways to communicate through interaction, layout, and motion, pushing the boundaries of what design can express.
                 </p>
               </div>
             </div>

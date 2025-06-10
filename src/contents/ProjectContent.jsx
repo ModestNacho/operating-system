@@ -1,29 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import TimeLapse from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/Process.mov';
 import Wave from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/Wave.svg';
+import SmolWave from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/SmolWave.svg';
 import Blender from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/Blender.png';
-import Book3D from '../components/Book3D';
-
-const Books = () => {
-  const books = [
-    { title: "Design Systems", author: "John Smith", coverColor: "#B1D044" },    // Yellow/Gold
-    { title: "React Patterns", author: "Jane Doe", coverColor: "#337CA0" },      // Blue
-    { title: "Web Animation", author: "Mike Johnson", coverColor: "#998080" },    // Mauve
-    { title: "Three.js Journey", author: "Sarah Wilson", coverColor: "#FF8360" }, // Coral
-    { title: "TypeScript Pro", author: "David Chen", coverColor: "#9153F4" },     // Purple
-    { title: "Modern CSS", author: "Emma Taylor", coverColor: "#F3BD29" },        // Yellow/Gold
-  ];
-
-  return (
-    <div className="flex flex-wrap justify-center gap-8 py-10">
-      {books.map((book, index) => (
-        <div key={index}>
-          <Book3D {...book} />
-        </div>
-      ))}
-    </div>
-  );
-};
+import Explain from '/Users/shweb/Documents/Portfolio/OS/Operating-System/src/assets/explainme1.jpg';
+import { Bookshelf } from '../components/Book3D';
 
 const ProjectContent = ({ isDarkMode }) => {
   const [activeSection, setActiveSection] = useState('overview');
@@ -73,8 +54,8 @@ const ProjectContent = ({ isDarkMode }) => {
           }`}
         />
         <img
-          key="blender2"
-          src={Blender}
+          key="explain"
+          src={Explain}
           alt="Blender Screenshot"
           className={`absolute w-full h-full object-cover rounded-md transition-all duration-700 ${
             activeSection === 'techstack' ? 'opacity-100 transform-none' : 'opacity-0 translate-y-full'
@@ -107,7 +88,7 @@ const ProjectContent = ({ isDarkMode }) => {
                 } transition-colors cursor-pointer`}>
                 <h3 className={`text-xl font-medium ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>Project Planning with FigJam</h3>
                 <p className={`text-sm mt-1 ${isDarkMode ? 'text-gray-300' : 'text-gray-600'}`}>
-                  Collaborative brainstorming, workflow mapping, and comprehensive project documentation
+                  Brainstorming, workflow mapping, and comprehensive project documentation
                 </p>
               </div>
               
@@ -125,8 +106,8 @@ const ProjectContent = ({ isDarkMode }) => {
           </div>
 
           {/* Wave Separator 1 */}
-          <div className="flex justify-start w-full ml-[0%] my-8">
-            <img src={Wave} alt="Wave" className="w-full h-auto" />
+          <div className="flex justify-start w-1/2 ml-[25%] my-4">
+            <img src={SmolWave} alt="Wave" className="w-full h-auto" />
           </div>
 
           {/* 3D Graphics Journey Section */}
@@ -166,8 +147,8 @@ const ProjectContent = ({ isDarkMode }) => {
           </div>
 
           {/* Wave Separator 2 */}
-          <div className="flex justify-start w-full ml-[0%] my-8">
-            <img src={Wave} alt="Wave" className="w-full h-auto" />
+          <div className="flex justify-start w-1/2 ml-[25%] my-4">
+            <img src={SmolWave} alt="Wave" className="w-full h-auto" />
           </div>
 
           {/* Project Features Section */}
@@ -225,7 +206,7 @@ const ProjectContent = ({ isDarkMode }) => {
       
       {/* Books Section */}
       <div className="w-full bg-transparent">
-        <Books />
+        <Bookshelf />
       </div>
     </div>
   );
