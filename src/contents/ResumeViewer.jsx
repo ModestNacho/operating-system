@@ -1,6 +1,6 @@
 // File: src/contents/ResumeViewer.jsx
 import React from 'react';
-import ResumePDF from '/src/assets/BassimShweRes-1.pdf'; // Adjust the path if needed
+import ResumePDF from '/src/assets/BassimSh.pdf'; // Adjust the path if needed
 
 const ResumeViewer = () => {
   return (

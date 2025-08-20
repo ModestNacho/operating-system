@@ -8,7 +8,7 @@ import PrinterMiddle from '/src/assets/PrinterMiddle.svg';
 import PrinterFront from '/src/assets/PrinterFront.svg';
 
 // Import your PDF file (this will resolve to the proper URL)
-import ResumePDF from '/src/assets/BassimShweRes-1.pdf';
+import ResumePDF from '/src/assets/BassimSh.pdf';
 
 const PrinterIcon = () => {
   const [paperDown, setPaperDown] = useState(false);
@@ -20,7 +20,7 @@ const PrinterIcon = () => {
     setTimeout(() => {
       const link = document.createElement('a');
       link.href = ResumePDF;
-      link.download = 'BassimShweRes-1.pdf'; // You can change the file name if needed
+      link.download = 'BassimSh.pdf'; // You can change the file name if needed
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
